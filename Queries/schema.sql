@@ -1,0 +1,48 @@
+--CREATE TABLES FOR METACRITIC DATA
+CREATE TABLE Games (
+ID INT NOT NULL,
+    Metascore INT NOT NULL,
+    Platform VARCHAR NOT NULL,
+    ReleaseDate DATE NOT NULL,
+	SortNo INT NOT NULL,
+	Summary VARCHAR NOT NULL, 
+	Title VARCHAR NOT NULL, 
+	UserScore INT NOT NULL,
+    PRIMARY KEY (ID)
+);
+SELECT * FROM Games;
+
+CREATE TABLE Movies (
+ID INT NOT NULL,
+    Metascore INT NOT NULL,
+    Rating VARCHAR NOT NULL,
+    ReleaseDate DATE NOT NULL,
+	SortNo INT NOT NULL,
+	Summary VARCHAR NOT NULL, 
+	Title VARCHAR NOT NULL, 
+	UserScore INT NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE Music (
+ID INT NOT NULL,
+	Artist VARCHAR NOT NULL,
+    Metascore INT NOT NULL,
+    ReleaseDate DATE NOT NULL,
+	SortNo INT NOT NULL,
+	Summary VARCHAR NOT NULL, 
+	Title VARCHAR NOT NULL, 
+	UserScore INT NOT NULL,
+    PRIMARY KEY (ID)
+);
+
+CREATE TABLE TV (
+ID INT NOT NULL,
+    Metascore INT NOT NULL,
+    ReleaseDate DATE NOT NULL,
+	SortNo INT NOT NULL,
+	Summary VARCHAR NOT NULL, 
+	Title VARCHAR NOT NULL, 
+	UserScore INT NOT NULL,
+    PRIMARY KEY (ID)
+);

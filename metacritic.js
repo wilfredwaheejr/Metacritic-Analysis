@@ -1,9 +1,11 @@
 function init() {
     var selector = d3.select("#selDataset");
-  
-    d3.json("adjusted_music_scores.json").then(function(data){
-      albumNames = data.map(person =>
-        person.title).sort((a,b) => b - a);
+    
+    // Use the list of album names to populate the select options
+    d3.json("adjusted_music_scores.json").then((data) => {
+      var albumNames = data.map(person =>
+        person.title);
+
       albumNames.forEach((album) => {
         selector
           .append("option")
@@ -18,10 +20,11 @@ function init() {
   });
 }
   
+// Initialize the dashboard
   init();
 
   function optionChanged(newAlbum) {
-    // Fetch new data each time a new sample is selected
+    // Fetch new data each time a new album is selected
     buildAlbumInfo(newAlbum);
     buildCharts(newAlbum);
     
@@ -29,7 +32,7 @@ function init() {
   
   // Album Info Panel 
   function buildAlbumInfo(album) {
-    d3.json("adjusted_music_scores.json").then(function(data){
+    d3.json("adjusted_music_scores.json").then((data) => {
         var albuminfo = data.map(person =>
             person).sort((a,b) => b - a);
       // Filter the data for the object with the desired sample number
@@ -50,4 +53,6 @@ function init() {
   
     });
   }
-  
+
+
+    

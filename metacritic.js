@@ -31,11 +31,11 @@ function init() {
   function buildAlbumInfo(album) {
     d3.json("adjusted_music_scores.json").then(function(data){
         var albuminfo = data.map(person =>
-            person.summary).sort((a,b) => b - a);
+            person).sort((a,b) => b - a);
       // Filter the data for the object with the desired sample number
       var resultArray = albuminfo.filter(sampleObj => sampleObj.title == album);
       var result = resultArray[0];
-      // Use d3 to select the panel with id of `#sample-metadata`
+      // Use d3 to select the panel with id of `#album-info`
       var PANEL = d3.select("#album-info");
   
       // Use `.html("") to clear any existing metadata

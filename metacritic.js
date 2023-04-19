@@ -54,5 +54,137 @@ function init() {
     });
   }
 
+// Create the buildCharts function.
+function buildCharts(album) {
+    // Use d3.json to load and retrieve the samples.json file 
+    d3.json("adjusted_music_scores.json").then((data) => {
+      // Create a variable that holds the samples array. 
+      var albums = data.map(person =>
+        person).sort((a,b) => b - a);
+      // Create a variable that filters the samples for the object with the desired sample number.
+      var resultArray = albums.filter(sampleObj => sampleObj.title == album);
+      //  Create a variable that holds the first sample in the array.
+      var result = resultArray[0];
 
+      // Create a variable that filters the metadata array for the object with the desired sample number.
+    var albuminfo = data.map(person =>
+        person).sort((a,b) => b - a);
+    var gaugeArray = albuminfo.filter(albumObj => albumObj.title == album);
+
+    // Create a variable that holds the first sample in the metadata array.
+    var gaugeResult = gaugeArray[0];
+
+    // Create a variable that holds the washing frequency.
+    var weightedavg = gaugeResult.weighted_average;
+    console.log(weightedavg)
+   
+    // Create the trace for the gauge chart.
+    var gaugeData = [{
+      value: weightedavg,
+      type: "indicator",
+      mode: "gauge+number",
+      title: {text: "<b> Weighted Rating </b> <br></br> 60% User + 40% Critic"},
+      gauge: {
+        axis: {range: [null,100], dtick: "20"},
+
+        bar: {color: "black"},
+        steps:[
+          {range: [0, 20], color: "red"},
+          {range: [20, 40], color: "orange"},
+          {range: [40, 60], color: "yellow"},
+          {range: [60, 80], color: "lightgreen"},
+          {range: [80, 100], color: "green"}
+        ],
+        dtick: 20
+    }}];
     
+    // Create the layout for the gauge chart.
+    var gaugeLayout = { 
+      automargin: true
+    };
+
+    // Use Plotly to plot the gauge data and layout.
+    Plotly.newPlot("gauge", gaugeData, gaugeLayout);
+
+
+      // Create a variable that filters the metadata array for the object with the desired sample number.
+      var albuminfo = data.map(person =>
+        person).sort((a,b) => b - a);
+    var gaugeArray = albuminfo.filter(albumObj => albumObj.title == album);
+
+    // Create a variable that holds the first sample in the metadata array.
+    var gaugeResult = gaugeArray[0];
+
+    // Create a variable that holds the washing frequency.
+    var metascore = gaugeResult.metascore;
+    console.log(metascore)
+   
+    // Create the trace for the gauge chart.
+    var gaugeData1 = [{
+      value: metascore,
+      type: "indicator",
+      mode: "gauge+number",
+      title: {text: "<b> Original Rating </b> <br></br> Metacritic Rating"},
+      gauge: {
+        axis: {range: [null,100], dtick: "20"},
+
+        bar: {color: "black"},
+        steps:[
+          {range: [0, 20], color: "red"},
+          {range: [20, 40], color: "orange"},
+          {range: [40, 60], color: "yellow"},
+          {range: [60, 80], color: "lightgreen"},
+          {range: [80, 100], color: "green"}
+        ],
+        dtick: 20
+    }}];
+    
+    // Create the layout for the gauge chart.
+    var gaugeLayout1 = { 
+      automargin: true
+    };
+
+    // Use Plotly to plot the gauge data and layout.
+    Plotly.newPlot("gauge1", gaugeData1, gaugeLayout1);
+
+    // Create a variable that filters the metadata array for the object with the desired sample number.
+    var albuminfo = data.map(person =>
+        person).sort((a,b) => b - a);
+    var gaugeArray = albuminfo.filter(albumObj => albumObj.title == album);
+
+    // Create a variable that holds the first sample in the metadata array.
+    var gaugeResult = gaugeArray[0];
+
+    // Create a variable that holds the washing frequency.
+    var user_score = gaugeResult.user_score;
+    console.log(user_score)
+   
+    // Create the trace for the gauge chart.
+    var gaugeData2 = [{
+      value: user_score,
+      type: "indicator",
+      mode: "gauge+number",
+      title: {text: "<b> User Rating </b> <br></br> User Rating Average"},
+      gauge: {
+        axis: {range: [null,100], dtick: "20"},
+
+        bar: {color: "black"},
+        steps:[
+          {range: [0, 20], color: "red"},
+          {range: [20, 40], color: "orange"},
+          {range: [40, 60], color: "yellow"},
+          {range: [60, 80], color: "lightgreen"},
+          {range: [80, 100], color: "green"}
+        ],
+        dtick: 20
+    }}];
+    
+    // Create the layout for the gauge chart.
+    var gaugeLayout2 = { 
+      automargin: true
+    };
+
+    // Use Plotly to plot the gauge data and layout.
+    Plotly.newPlot("gauge2", gaugeData2, gaugeLayout2)
+  });
+}
